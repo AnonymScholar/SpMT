@@ -65,7 +65,9 @@ python train.py --phase train
 
 1. Check the file 'options/demo_options.py', change the corresponding cofigs if needed
 
-2. Download the pre-trained model from [Google Drive](https://drive.google.com/file/d/1aHwv1q5MfMfrCcweFObXITyF7dv4L-w8/view?usp=sharing) and put it into '/checkpoints/makeup_transfer/'
+2. Create folder '/checkpoints/makeup_transfer/'
+
+3. Download the pre-trained model from [Google Drive](https://drive.google.com/file/d/1aHwv1q5MfMfrCcweFObXITyF7dv4L-w8/view?usp=sharing) and put it into '/checkpoints/makeup_transfer/'
 
 #### Use images of MT dataset:
 
