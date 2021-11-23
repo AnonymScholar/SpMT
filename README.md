@@ -93,32 +93,32 @@ python demo_general.py  --beyond_mt
 
 + Interpolation from light to heavy
 
-![shade1](/imgs/supplementatry_controllable_shade1.png)
+![shade1](/imgs/supplementary_controllable_shade1.png)
 
 + Interpolation between multiple references
 
-![shade2](/imgs/supplementatry_controllable_shade2.png)
+![shade2](/imgs/supplementary_controllable_shade2.png)
 
 #### Part-specific
 
 Transfer different parts from different references
 
-![part](/imgs/supplementatry_controllable_part.png)
+![part](/imgs/supplementary_controllable_part.png)
 
 #### Makeup Removal
 
-![removal](/imgs/supplementatry_controllable_removal.png)
+![removal](/imgs/supplementary_controllable_removal.png)
 
 #### Comparison with Prior Arts
 
 + Normal Images
 
-![normal](/imgs/supplementatry_comparison_normal.png)
+![normal](/imgs/supplementary_comparison_normal.png)
 
 + Wild Images
 
-![wild1](/imgs/supplementatry_comparison_wild1.png)
-![wild2](/imgs/supplementatry_comparison_wild2.png)
+![wild1](/imgs/supplementary_comparison_wild1.png)
+![wild2](/imgs/supplementary_comparison_wild2.png)
 
 
 ### Acknowledgments
