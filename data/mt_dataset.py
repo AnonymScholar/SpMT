@@ -53,9 +53,9 @@ class MTDataset():
                                      open(os.path.join('MT-Dataset', 'non-makeup.txt'), "rt").readlines()]
         if self.phase == 'test':
             self.makeup_names = [name.strip() for name in
-                                 open(os.path.join('MT-Dataset', 'm_test.txt'), "rt").readlines()]
+                                 open(os.path.join('MT-Dataset', 'makeup_test.txt'), "rt").readlines()]
             self.non_makeup_names = [name.strip() for name in
-                                     open(os.path.join('MT-Dataset', 'n_m_test.txt'), "rt").readlines()]
+                                     open(os.path.join('MT-Dataset', 'non-makeup_test.txt'), "rt").readlines()]
         self.transform = transforms.Compose([
             transforms.Resize((opt.crop_size, opt.crop_size)),
             transforms.ToTensor(),

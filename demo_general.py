@@ -56,14 +56,12 @@ for i in range(opt.demo_nums):
 
     c = Image.open(os.path.join(opt.dataroot,'images/non-makeup',non_makeup_name)).convert('RGB')
     s = Image.open(os.path.join(opt.dataroot,'images/makeup',makeup_name)).convert('RGB')
-
-    opt.height, opt.width = 256, 256*c.size[0]//c.size[1]
-    s_height, s_width = 256, 256*s.size[0]//s.size[1]
+    height, width = c.size[0], c.size[1]
     c_m = c.resize((512, 512))
     s_m = s.resize((512,512))
     c = c.resize((256,256))
     s = s.resize((256,256))
-    
+    print(c.size)
     c_tensor = trans(c).unsqueeze(0)
     s_tensor = trans(s).unsqueeze(0)
     c_m_tensor = trans(c_m).unsqueeze(0)
@@ -71,14 +69,15 @@ for i in range(opt.demo_nums):
 
     x_label = parsing_net(c_m_tensor)[0]  
     y_label = parsing_net(s_m_tensor)[0]
-    x_label=F.interpolate(x_label, (opt.height, opt.width), mode='bilinear', align_corners=True)
-    y_label=F.interpolate(y_label, (opt.height, opt.width), mode='bilinear', align_corners=True)
+    x_label=F.interpolate(x_label, (256, 256), mode='bilinear', align_corners=True)
+    y_label=F.interpolate(y_label, (256, 256), mode='bilinear', align_corners=True)
     x_label = torch.softmax(x_label, 1) 
     y_label = torch.softmax(y_label, 1)
 
     nonmakeup_unchanged = (x_label[0,0,:,:]+x_label[0,4,:,:]+x_label[0,5,:,:]+x_label[0,11,:,:]+x_label[0,16,:,:]+x_label[0,17,:,:]).unsqueeze(0).unsqueeze(0)
     makeup_unchanged = (y_label[0,0,:,:]+y_label[0,4,:,:]+y_label[0,5,:,:]+y_label[0,11,:,:]+y_label[0,16,:,:]+y_label[0,17,:,:]).unsqueeze(0).unsqueeze(0)
-
+    print(c_tensor.shape, s_tensor.shape)
+    print(x_label.shape, y_label.shape)
     input_dict = {'nonmakeup': c_tensor,
               'makeup': s_tensor,
               'label_A': x_label,
@@ -96,14 +95,12 @@ for i in range(opt.demo_nums):
     print(time_end - time_start)
 
     out = denorm(synthetic_image[0])
-    out = F.interpolate(out, (opt.height, opt.width), mode='bilinear', align_corners=False)
-    out_demo = torch.cat([denorm(c_tensor),denorm(s_tensor),out[0].unsqueeze(0).cpu()],3)
+    out = F.interpolate(out, (256, 256*height//width), mode='bilinear', align_corners=False)
 
     c_name = os.path.splitext(os.path.basename(non_makeup_name))[0]
     s_name = os.path.splitext(os.path.basename(makeup_name))[0]
     opt.output_name = f'{opt.result_dir}/{c_name}_{s_name}'
 
     save_image(out, f'{opt.output_name}.jpg', nrow=1)
-    save_image(out_demo,f'{opt.output_name}_style_transfer_demo.jpg')
 
     print(f'result saved into files starting with {opt.output_name}\n')
