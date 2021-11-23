@@ -2,6 +2,8 @@
 
 PyTorch Code for "Semi-parametric Makeup Transfer via Semantic-aware Correspondence"
 
+[Web Demo](http://www.sketchai.cn/)
+
 ![cover](/imgs/cover.png)
 
 ### Requirements
