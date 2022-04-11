@@ -2,7 +2,7 @@
 
 PyTorch Code for [arXiv "Semi-parametric Makeup Transfer via Semantic-aware Correspondence" ](https://arxiv.org/abs/2203.02286) 
 
-[Web Demo](http://www.sketchai.cn/)
+<!-- [Web Demo](http://www.sketchai.cn/) -->
 
 ![cover](/imgs/cover.png)
 
